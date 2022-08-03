@@ -19,3 +19,4 @@ folium
 statsmodels
 plotly
 DecisionTreeClassifier
+pickle

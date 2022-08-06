@@ -120,9 +120,9 @@ scaler = StandardScaler()
 scaler.fit_transform(X)
 
 
-#use the model save with new data to predicts prima
+#use the model save with new data to predicts
 
-# load the model from disk
+filename = '../models/finalized_model.sav' #use absolute path
 loaded_model = pickle.load(open(filename, 'rb'))
 
 #Predict using the model 
@@ -133,7 +133,7 @@ BMI=29
 Age=24
 DiabetesPedigreeFunction=0.520
 
-#predigo el target para los valores seteados
+#predigo el target para los valores seteados con modelo
 print('Predicted Diabetic : \n', loaded_model.predict([[Glucose,SkinThickness,Insulin,BMI,Age,DiabetesPedigreeFunction]]))
 
 Glucose=134
@@ -143,9 +143,32 @@ BMI=34
 Age=24
 DiabetesPedigreeFunction=0.75
 
-#predigo el target para los valores seteados
+#predigo el target para los valores seteados con modelo1
 print('Predicted Diabetic : \n', loaded_model.predict([[Glucose,SkinThickness,Insulin,BMI,Age,DiabetesPedigreeFunction]]))
 
+filename1 = '../models/finalized_model1.sav' #use absolute path
+loaded_model = pickle.load(open(filename1, 'rb'))
+
+#Predict using the model 
+Glucose=120
+SkinThickness=23
+Insulin=215
+BMI=29
+Age=24
+DiabetesPedigreeFunction=0.520
+
+#predigo el target para los valores seteados
+print('Predicted Diabetic modelo 1: \n', loaded_model.predict([[Glucose,SkinThickness,Insulin,BMI,Age,DiabetesPedigreeFunction]]))
+
+Glucose=134
+SkinThickness=30
+Insulin=74
+BMI=34
+Age=24
+DiabetesPedigreeFunction=0.75
+
+#predigo el target para los valores seteados
+print('Predicted Diabetic  modelo 1: \n', loaded_model.predict([[Glucose,SkinThickness,Insulin,BMI,Age,DiabetesPedigreeFunction]]))
 
 
 

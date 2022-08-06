@@ -1,12 +1,3 @@
-!pip install pandas
-!pip install matplotlib
-!pip install sklearn
-!pip install seaborn
-!pip install folium
-!pip install statsmodels
-!pip install plotly
-!pip install DecisionTreeClassifier
-!pip install pickle
 
 import pandas as pd 
 import numpy as np 
@@ -55,11 +46,7 @@ set_use_mean('BloodPressure')
 set_use_mean('SkinThickness')
 set_use_mean('BMI')
 
-#exclude pregnancy and BloodPressure to feature model
- 
-#X = df_raw[list(df_raw.columns[1:8])]
-X = df[['Glucose','SkinThickness','Insulin','BMI','Age','DiabetesPedigreeFunction']] 
-y = df[['Outcome']]
+
  
 #Eliminating Outliers with IQR Method
 q1 = df['Insulin'].quantile(0.25)
@@ -110,6 +97,12 @@ upper_limit = q3 + 1.5 * IQR
 
 df = df[(df['DiabetesPedigreeFunction'] > lower_limit) & (df['DiabetesPedigreeFunction'] < upper_limit)]
 
+#exclude pregnancy and BloodPressure to feature model
+ 
+#X = df_raw[list(df_raw.columns[1:8])]
+X = df[['Glucose','SkinThickness','Insulin','BMI','Age','DiabetesPedigreeFunction']] 
+y = df[['Outcome']]
+
 #Separate features from target
 X=df.drop('Outcome',axis='columns')
 Y=df["Outcome"]
@@ -120,13 +113,10 @@ scaler = StandardScaler()
 scaler.fit_transform(X)
 
 
+#use the model save with new data to predicts
 
-
-#predigo el target para los valores seteados con modelo1
-print('Predicted Diabetic : \n', loaded_model.predict([[Glucose,SkinThickness,Insulin,BMI,Age,DiabetesPedigreeFunction]]))
-
-filename1 = '../models/finalized_model1.sav' #use absolute path
-loaded_model = pickle.load(open(filename1, 'rb'))
+filename = '../models/finalized_model.sav' #use absolute path
+loaded_model = pickle.load(open(filename, 'rb'))
 
 #Predict using the model 
 Glucose=120
@@ -136,8 +126,9 @@ BMI=29
 Age=24
 DiabetesPedigreeFunction=0.520
 
-#predigo el target para los valores seteados
-print('Predicted Diabetic modelo 1: \n', loaded_model.predict([[Glucose,SkinThickness,Insulin,BMI,Age,DiabetesPedigreeFunction]]))
+
+#predigo el target para los valores seteados con modelo
+print('Predicted Diabetic : \n', loaded_model.predict([[Glucose,SkinThickness,Insulin,BMI,Age,DiabetesPedigreeFunction]]))
 
 Glucose=134
 SkinThickness=30
@@ -146,13 +137,8 @@ BMI=34
 Age=24
 DiabetesPedigreeFunction=0.75
 
-#predigo el target para los valores seteados
-print('Predicted Diabetic  modelo 1: \n', loaded_model.predict([[Glucose,SkinThickness,Insulin,BMI,Age,DiabetesPedigreeFunction]]))
-
-
-
-
-
+#predigo el target para los valores seteados con modelo
+print('Predicted Diabetic : \n', loaded_model.predict([[Glucose,SkinThickness,Insulin,BMI,Age,DiabetesPedigreeFunction]]))
 
 
 

@@ -120,28 +120,7 @@ scaler = StandardScaler()
 scaler.fit_transform(X)
 
 
-#use the model save with new data to predicts
 
-filename = '../models/finalized_model.sav' #use absolute path
-loaded_model = pickle.load(open(filename, 'rb'))
-
-#Predict using the model 
-Glucose=120
-SkinThickness=23
-Insulin=215
-BMI=29
-Age=24
-DiabetesPedigreeFunction=0.520
-
-#predigo el target para los valores seteados con modelo
-print('Predicted Diabetic : \n', loaded_model.predict([[Glucose,SkinThickness,Insulin,BMI,Age,DiabetesPedigreeFunction]]))
-
-Glucose=134
-SkinThickness=30
-Insulin=74
-BMI=34
-Age=24
-DiabetesPedigreeFunction=0.75
 
 #predigo el target para los valores seteados con modelo1
 print('Predicted Diabetic : \n', loaded_model.predict([[Glucose,SkinThickness,Insulin,BMI,Age,DiabetesPedigreeFunction]]))

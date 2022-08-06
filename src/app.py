@@ -115,7 +115,7 @@ scaler.fit_transform(X)
 
 #use the model save with new data to predicts
 
-filename = '../models/finalized_model.sav' #use absolute path
+filename = '../models/finalized_model1.sav' #use absolute path
 loaded_model = pickle.load(open(filename, 'rb'))
 
 #Predict using the model 
